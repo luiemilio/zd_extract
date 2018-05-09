@@ -120,14 +120,15 @@ async function writeToCsv(fromDate, toDate) {
 }
 
 async function start() {
-	reader.question('enter from date: ', (fromDate) => {
-		console.log(fromDate);
-		reader.close();
+	reader.question('Enter From Date (YYYY-MM-DD):', (inputFromDate) => {
+		const fromDate = inputFromDate;
+		reader.question('Enter To Date (YYYY-MM-DD):', (inputToDate) => {
+			const toDate = inputToDate;
+			writeToCsv(fromDate, toDate);
+			reader.close();
+		});
 	});
-
 }
-
-// writeToCsv('2018-05-02', '2018-05-03');
 
 start();
 
