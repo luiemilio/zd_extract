@@ -1,3 +1,14 @@
+const fs = require('fs');
+
+const csvWriter = require('csv-write-stream');
+const writer = csvWriter();
+
+const readline = require('readline');
+const reader = readline.createInterface({
+	input: process.stdin,
+	output: process.stdout
+});
+
 const {
 	getTicketsInRange,
 	getMetrics,
@@ -6,9 +17,7 @@ const {
 	getGroupFromId
 } = require('./api');
 
-const fs = require('fs');
-const csvWriter = require('csv-write-stream');
-const writer = csvWriter();
+
 
 // original ticket columns: 
 // id, created_at, updated_at, type, priority, status, 
@@ -110,7 +119,17 @@ async function writeToCsv(fromDate, toDate) {
 	return `${ranNum}.csv`;
 }
 
-writeToCsv('2018-05-02', '2018-05-03');
+async function start() {
+	reader.question('enter from date: ', (fromDate) => {
+		console.log(fromDate);
+		reader.close();
+	});
+
+}
+
+// writeToCsv('2018-05-02', '2018-05-03');
+
+start();
 
 module.exports = {
 	writeToCsv: writeToCsv
