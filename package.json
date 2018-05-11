@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "csv-write-stream": "^2.0.0"
+    "csv-write-stream": "^2.0.0",
+    "moment": "^2.22.1",
+    "prompt": "^1.0.0"
   }
 }

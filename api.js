@@ -1,7 +1,11 @@
 const https = require('https');
 const querystring = require('querystring');
-const email = require('./config').email;
-const token = require('./config').token;
+
+const {
+	email,
+	token
+} = require('./config');
+
 const options = {
 	host: 'openfin.zendesk.com',
 	headers: {

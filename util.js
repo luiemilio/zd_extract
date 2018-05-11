@@ -3,12 +3,6 @@ const fs = require('fs');
 const csvWriter = require('csv-write-stream');
 const writer = csvWriter();
 
-const readline = require('readline');
-const reader = readline.createInterface({
-	input: process.stdin,
-	output: process.stdout
-});
-
 const {
 	getTicketsInRange,
 	getMetrics,
@@ -16,8 +10,6 @@ const {
 	getOrganizationFromId,
 	getGroupFromId
 } = require('./api');
-
-
 
 // original ticket columns: 
 // id, created_at, updated_at, type, priority, status, 
@@ -119,18 +111,6 @@ async function writeToCsv(fromDate, toDate) {
 	return `${ranNum}.csv`;
 }
 
-async function start() {
-	reader.question('Enter From Date (YYYY-MM-DD):', (inputFromDate) => {
-		const fromDate = inputFromDate;
-		reader.question('Enter To Date (YYYY-MM-DD):', (inputToDate) => {
-			const toDate = inputToDate;
-			writeToCsv(fromDate, toDate);
-			reader.close();
-		});
-	});
-}
-
-start();
 
 module.exports = {
 	writeToCsv: writeToCsv
