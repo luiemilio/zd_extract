@@ -96,9 +96,9 @@ async function getTickets(startDate, endDate) {
 async function writeToCsv(fromDate, toDate) {
 	console.log('fetching tickets...');
 	const tickets = await getTickets(fromDate, toDate);
-	const ranNum = (Math.floor(Math.random() * Math.floor(999999999999999999999)));
+	const fileName = `${fromDate}-${toDate}.csv`;
 	console.log('writing csv...');
-	writer.pipe(fs.createWriteStream(`${ranNum}.csv`));
+	writer.pipe(fs.createWriteStream(fileName));
 
 	for (let index = 0; index < tickets.length; index++) {
 		const ticket = tickets[index];
@@ -106,9 +106,7 @@ async function writeToCsv(fromDate, toDate) {
 	}
 
 	writer.end();
-	console.log(`csv ready... name: ${ranNum}.csv`);
-
-	return `${ranNum}.csv`;
+	console.log(`csv ready... name: ${fileName}`);
 }
 
 
